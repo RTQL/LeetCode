@@ -1,6 +1,7 @@
 class Solution:
     def romanToInt(self, s: str) -> int:
-        integer = 0
+        s = s.replace("IV", "IIII").replace("IX", "VIIII").replace("XL", "XXXX").replace(
+            "XC", "LXXXX").replace("CD","CCCC").replace("CM", "DCCCC")
         roman = {
             'I': 1,
             'V': 5,
@@ -10,11 +11,4 @@ class Solution:
             'D': 500,
             'M': 1000,
         }
-        for index, symbol in enumerate(s[:-1]):
-            value = roman[symbol]
-            if roman[s[index + 1]] <= value:
-                integer += value
-            else:
-                integer -= value
-        integer += roman[s[-1]]
-        return integer
+        return sum(map(lambda x: roman[x], s))
