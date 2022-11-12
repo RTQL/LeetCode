@@ -2,7 +2,8 @@ class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         hashtable = {}
         for index, number in enumerate(nums):
-            if target - number in hashtable:
-                return [hashtable[target - number], index]
+            value = target - number
+            if value in hashtable:
+                return [hashtable[value], index]
             hashtable[number] = index
             
